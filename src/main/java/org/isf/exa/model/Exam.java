@@ -45,6 +45,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AttributeOverride(name = "lastModifiedBy", column = @Column(name = "EXA_LAST_MODIFIED_BY"))
 @AttributeOverride(name = "active", column = @Column(name = "EXA_ACTIVE"))
 @AttributeOverride(name = "lastModifiedDate", column = @Column(name = "EXA_LAST_MODIFIED_DATE"))
+@AttributeOverride(name = "examFor", column = @Column(name = "EXA_FOR"))
 public class Exam extends Auditable<String> {
 
 	@Id
@@ -73,6 +74,10 @@ public class Exam extends Auditable<String> {
 
 	@Transient
 	private volatile int hashCode;
+	
+	@NotNull
+	@Column(name="EXA_FOR")
+	private String examFor;
 	
 	public Exam() 
     {
@@ -136,17 +141,26 @@ public class Exam extends Auditable<String> {
 	public void setProcedure(Integer procedure) {
 		this.procedure = procedure;
 	}
+	
+	public String getExamFor() {
+		return examFor;
+	}
+
+	public void setExamFor(String examFor) {
+		this.description = examFor;
+	}
 
 	@Override
 	public boolean equals(Object anObject) {
 		return anObject instanceof Exam && (getCode().equals(((Exam) anObject).getCode())
-				&& getDescription().equalsIgnoreCase(((Exam) anObject).getDescription()) && getExamtype().equals(((Exam) anObject).getExamtype()));
+				&& getDescription().equalsIgnoreCase(((Exam) anObject).getDescription()) && getExamtype().equals(((Exam) anObject).getExamtype()) && getExamFor().equalsIgnoreCase(((Exam) anObject).getExamFor()) );
 	}
 
 	@Override
 	public String toString() {
 		return getDescription();
-	}	
+	}
+	
 
 	@Override
 	public int hashCode() {
