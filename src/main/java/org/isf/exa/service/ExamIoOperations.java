@@ -33,6 +33,8 @@ import org.isf.utils.exception.OHServiceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import feign.Param;
+
 @Service
 @Transactional(rollbackFor = OHServiceException.class)
 @TranslateOHServiceException
@@ -81,7 +83,33 @@ public class ExamIoOperations {
 		return description != null ? repository.findByExamtype_DescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(description) :
 			repository.findByOrderByDescriptionAscDescriptionAsc();
 	}
-
+	
+	/**
+	 * Returns the list of {@link Exam}s by {@link ExamFor} description
+	 * @param examFor - the examfor pregnancy or not description
+	 * @return the list of {@link Exam}s
+	 * @throws OHServiceException
+	 */
+	public List<Exam> getExamsByExamForDesc(String examFor) throws OHServiceException {
+		return repository.findByExamForOrderByDescriptionAscDescriptionAsc(examFor);
+	}
+	
+    
+	/**
+	 * Returns the list of {@link Exam}s by {@link ExamFor} description
+	 * @param examFor - the examfor pregnancy or not description
+	 * @param examType - the exam type description
+	 * @return the list of {@link Exam}s
+	 * @throws OHServiceException
+	 */
+	public List<Exam> getExamsByExamForAndExamTypeDesc(String examFor, String examType) throws OHServiceException {
+		return examFor != null ? repository.findByExamForAndExamtypeDescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(examFor, examType) :
+			repository.findByOrderByDescriptionAscDescriptionAsc();
+	}
+	
+	
+	
+	
 	/**
 	 * Returns the list of {@link ExamType}s
 	 * @return the list of {@link ExamType}s

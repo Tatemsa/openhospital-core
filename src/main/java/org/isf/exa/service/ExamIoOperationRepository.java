@@ -25,7 +25,10 @@ import java.util.List;
 
 import org.isf.exa.model.Exam;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import feign.Param;
 
 @Repository
 public interface ExamIoOperationRepository extends JpaRepository<Exam, String> {
@@ -35,4 +38,11 @@ public interface ExamIoOperationRepository extends JpaRepository<Exam, String> {
 	List<Exam> findByDescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(String description);
 
 	List<Exam> findByExamtype_DescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(String description);
+	
+	@Query("SELECT e FROM Exam e WHERE e.examFor = :examFor ORDER BY e.description ASC") 
+	List<Exam> findByExamForOrderByDescriptionAscDescriptionAsc(@Param("examFor") String examFor);
+	
+	@Query("SELECT e FROM Exam e WHERE e.examFor = :examFor AND e.examtype.description LIKE %:examTypeDescription% ORDER BY e.examtype.description ASC") 
+	List<Exam> findByExamForAndExamtypeDescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(@Param("examFor") String examFor, @Param("examTypeDescription") String examTypeDescription);
+
 }

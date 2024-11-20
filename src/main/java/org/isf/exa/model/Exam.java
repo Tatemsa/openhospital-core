@@ -92,7 +92,22 @@ public class Exam extends Auditable<String> {
 		this.examtype = examtype;
 		this.defaultResult = defaultResult;
 		this.procedure = procedure;
+		this.examFor = "no";
+	
 	}
+	
+	public Exam(String code, String description, ExamType examtype,
+			Integer procedure, String defaultResult, String examFor ) {
+		super();
+		this.code = code;
+		this.description = description;
+		this.examtype = examtype;
+		this.defaultResult = defaultResult;
+		this.procedure = procedure;
+		this.examFor = examFor;
+	
+	}
+
 
 	public String getCode() {
 		return code;
@@ -147,7 +162,7 @@ public class Exam extends Auditable<String> {
 	}
 
 	public void setExamFor(String examFor) {
-		this.description = examFor;
+		this.examFor = examFor;
 	}
 
 	@Override

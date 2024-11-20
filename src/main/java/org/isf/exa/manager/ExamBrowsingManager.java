@@ -99,6 +99,34 @@ public class ExamBrowsingManager {
 	public List<Exam> getExamsByTypeDescription(String description) throws OHServiceException {
 		return ioOperations.getExamsByExamTypeDesc(description);
 	}
+	
+	
+	/**
+	 * Returns the list of {@link Exam}s by {@link ExamFor} description
+	 * @param examFor - the exam for pregnancy or not description
+	 * @return the list of {@link Exam}s. It could be {@code null}
+	 * @throws OHServiceException
+	 */
+	public List<Exam> getExamsByExamForDescription(String examFor) throws OHServiceException {
+		return ioOperations.getExamsByExamForDesc(examFor);
+	}
+	
+	
+	/**
+	 * Returns the list of {@link Exam}s by {@link ExamFor} description
+	 * @param examFor - the exam for pregnancy or not description
+	 * @param examType - the exam type description
+	 * @return the list of {@link Exam}s. It could be {@code null}
+	 * @throws OHServiceException
+	 */
+	public List<Exam> getExamsByExamForAndTypeDescription(String examFor, String examType) throws OHServiceException {
+		return ioOperations.getExamsByExamForAndExamTypeDesc(examFor, examType);
+	}
+	
+	
+	
+	
+	
 
 	/**
 	 * Returns the list of {@link ExamType}s
