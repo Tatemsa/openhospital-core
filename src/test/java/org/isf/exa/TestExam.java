@@ -32,6 +32,7 @@ public class TestExam {
 	private String code = "ZZ";
 	private String description = "TestDescription";
 	private String defaultResult = "TestDefaultResult";
+	private String examFor = "both";
 
 	public Exam setup(ExamType examtype, int procedure, boolean usingSet) throws OHException {
 		Exam exam;
@@ -41,7 +42,7 @@ public class TestExam {
 			setParameters(exam, procedure, examtype);
 		} else {
 			// Create Exam with all parameters 
-			exam = new Exam(code, description, examtype, procedure, defaultResult);
+			exam = new Exam(code, description, examtype, procedure, defaultResult, examFor);
 		}
 
 		return exam;
@@ -53,11 +54,13 @@ public class TestExam {
 		exam.setExamtype(examtype);
 		exam.setProcedure(procedure);
 		exam.setDefaultResult(defaultResult);
+		exam.setExamFor(examFor);
 	}
 
 	public void check(Exam exam) {
 		assertThat(exam.getCode()).isEqualTo(code);
 		assertThat(exam.getDescription()).isEqualTo(description);
 		assertThat(exam.getDefaultResult()).isEqualTo(defaultResult);
+		assertThat(exam.getExamFor()).isEqualTo(examFor);
 	}
 }

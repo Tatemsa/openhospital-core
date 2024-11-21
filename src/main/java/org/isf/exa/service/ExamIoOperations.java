@@ -33,8 +33,6 @@ import org.isf.utils.exception.OHServiceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import feign.Param;
-
 @Service
 @Transactional(rollbackFor = OHServiceException.class)
 @TranslateOHServiceException
@@ -85,26 +83,26 @@ public class ExamIoOperations {
 	}
 	
 	/**
-	 * Returns the list of {@link Exam}s by {@link ExamFor} description
-	 * @param examFor - the examfor pregnancy or not description
+	 * Returns the filtered list of {@link Exam}s by {@link ExamTarget} 
+	 *@param target - Exam target to consider for the filtering 
 	 * @return the list of {@link Exam}s
 	 * @throws OHServiceException
 	 */
-	public List<Exam> getExamsByExamForDesc(String examFor) throws OHServiceException {
-		return repository.findByExamForOrderByDescriptionAscDescriptionAsc(examFor);
+	public List<Exam> getByTarget(String examTarget) throws OHServiceException {
+		return repository.findByExamTargetOrderByDescriptionAsc(examTarget);
 	}
 	
     
 	/**
-	 * Returns the list of {@link Exam}s by {@link ExamFor} description
-	 * @param examFor - the examfor pregnancy or not description
-	 * @param examType - the exam type description
+	 * Filters exams by target and type
+	 * @param target - Exam target to consider for the filtering 
+	 * @param type - Exam type to consider for the filtering
 	 * @return the list of {@link Exam}s
-	 * @throws OHServiceException
+	 * @throws OHServiceException 
+	 * 
 	 */
-	public List<Exam> getExamsByExamForAndExamTypeDesc(String examFor, String examType) throws OHServiceException {
-		return examFor != null ? repository.findByExamForAndExamtypeDescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(examFor, examType) :
-			repository.findByOrderByDescriptionAscDescriptionAsc();
+	public List<Exam> getTargetAndType(String examTarget, String examType) throws OHServiceException {
+		return repository.findByExamTargetAndExamtypeDescriptionContainingOrderByExamtypeDescriptionAsc(examTarget, examType);
 	}
 	
 	

@@ -100,34 +100,34 @@ public class ExamBrowsingManager {
 		return ioOperations.getExamsByExamTypeDesc(description);
 	}
 	
-	
 	/**
-	 * Returns the list of {@link Exam}s by {@link ExamFor} description
-	 * @param examFor - the exam for pregnancy or not description
+	 * Returns the list of {@link Exam}s by {@link ExamType} description
+	 * @param examTarget - the examTarget description
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
-	public List<Exam> getExamsByExamForDescription(String examFor) throws OHServiceException {
-		return ioOperations.getExamsByExamForDesc(examFor);
+	public List<Exam> getByTarget(String examTarget) throws OHServiceException {
+		return ioOperations.getByTarget(examTarget);
 	}
 	
 	
+	
 	/**
-	 * Returns the list of {@link Exam}s by {@link ExamFor} description
-	 * @param examFor - the exam for pregnancy or not description
+	 * Returns the list of {@link Exam}s by {@link ExamTarget} description
+	 * @param examTarget - the examTarget for  pregnancy or not
 	 * @param examType - the exam type description
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
-	public List<Exam> getExamsByExamForAndTypeDescription(String examFor, String examType) throws OHServiceException {
-		return ioOperations.getExamsByExamForAndExamTypeDesc(examFor, examType);
+	
+	public List<Exam> getByTargetAndType(String examTarget, String examType) throws OHServiceException {
+		return ioOperations.getTargetAndType(examTarget, examType);
 	}
 	
 	
 	
 	
 	
-
 	/**
 	 * Returns the list of {@link ExamType}s
 	 * @return the list of {@link ExamType}s. It could be {@code null}

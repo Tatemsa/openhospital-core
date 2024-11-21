@@ -45,7 +45,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AttributeOverride(name = "lastModifiedBy", column = @Column(name = "EXA_LAST_MODIFIED_BY"))
 @AttributeOverride(name = "active", column = @Column(name = "EXA_ACTIVE"))
 @AttributeOverride(name = "lastModifiedDate", column = @Column(name = "EXA_LAST_MODIFIED_DATE"))
-@AttributeOverride(name = "examFor", column = @Column(name = "EXA_FOR"))
 public class Exam extends Auditable<String> {
 
 	@Id
@@ -76,8 +75,8 @@ public class Exam extends Auditable<String> {
 	private volatile int hashCode;
 	
 	@NotNull
-	@Column(name="EXA_FOR")
-	private String examFor;
+	@Column(name="EXA_TARGET")
+	private String examTarget;
 	
 	public Exam() 
     {
@@ -85,26 +84,14 @@ public class Exam extends Auditable<String> {
     }
 	
 	public Exam(String code, String description, ExamType examtype,
-			Integer procedure, String defaultResult) {
+			Integer procedure, String defaultResult, String examTarget ) {
 		super();
 		this.code = code;
 		this.description = description;
 		this.examtype = examtype;
 		this.defaultResult = defaultResult;
 		this.procedure = procedure;
-		this.examFor = "no";
-	
-	}
-	
-	public Exam(String code, String description, ExamType examtype,
-			Integer procedure, String defaultResult, String examFor ) {
-		super();
-		this.code = code;
-		this.description = description;
-		this.examtype = examtype;
-		this.defaultResult = defaultResult;
-		this.procedure = procedure;
-		this.examFor = examFor;
+		this.examTarget = examTarget;
 	
 	}
 
@@ -157,18 +144,18 @@ public class Exam extends Auditable<String> {
 		this.procedure = procedure;
 	}
 	
-	public String getExamFor() {
-		return examFor;
+	public String getExamTarget() {
+		return examTarget;
 	}
 
-	public void setExamFor(String examFor) {
-		this.examFor = examFor;
+	public void setExamTarget(String examTarget) {
+		this.examTarget = examTarget;
 	}
 
 	@Override
 	public boolean equals(Object anObject) {
 		return anObject instanceof Exam && (getCode().equals(((Exam) anObject).getCode())
-				&& getDescription().equalsIgnoreCase(((Exam) anObject).getDescription()) && getExamtype().equals(((Exam) anObject).getExamtype()) && getExamFor().equalsIgnoreCase(((Exam) anObject).getExamFor()) );
+				&& getDescription().equalsIgnoreCase(((Exam) anObject).getDescription()) && getExamtype().equals(((Exam) anObject).getExamtype()) && getExamTarget().equalsIgnoreCase(((Exam) anObject).getExamTarget()) );
 	}
 
 	@Override
