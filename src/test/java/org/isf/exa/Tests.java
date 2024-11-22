@@ -502,7 +502,7 @@ class Tests extends OHCoreTestCase {
 		Exam exam = examIoOperationRepository.findById(code).orElse(null);
 		assertThat(exam).isNotNull();
 		ExamType examType = testExamType.setup(false);
-		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult");
+		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult","both");
 		assertThat(exam)
 				.isEqualTo(exam)
 				.isNotEqualTo(exam2)
@@ -523,7 +523,7 @@ class Tests extends OHCoreTestCase {
 		ExamRow examRow = examRowIoOperationRepository.findById(code).orElse(null);
 		assertThat(examRow).isNotNull();
 		ExamType examType = testExamType.setup(false);
-		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult");
+		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult","both");
 		ExamRow examRow2 = new ExamRow(exam2, "NewDescription");
 		assertThat(examRow)
 				.isEqualTo(examRow)
