@@ -1,6 +1,6 @@
 /*
  * Open Hospital (www.open-hospital.org)
- * Copyright © 2006-2023 Informatici Senza Frontiere (info@informaticisenzafrontiere.org)
+ * Copyright © 2006-2024 Informatici Senza Frontiere (info@informaticisenzafrontiere.org)
  *
  * Open Hospital is a free and open source software for healthcare data management.
  *
@@ -26,6 +26,7 @@ import java.util.Objects;
 
 import org.isf.exa.model.Exam;
 import org.isf.exa.model.ExamRow;
+import org.isf.exa.model.ExamTarget;
 import org.isf.exatype.model.ExamType;
 import org.isf.exatype.service.ExamTypeIoOperationRepository;
 import org.isf.utils.db.TranslateOHServiceException;
@@ -84,12 +85,12 @@ public class ExamIoOperations {
 	
 	/**
 	 * Returns the filtered list of {@link Exam}s by {@link ExamTarget} 
-	 *@param target - Exam target to consider for the filtering 
+	 *@param target - Exam target to consider for the filtering  
 	 * @return the list of {@link Exam}s
 	 * @throws OHServiceException
 	 */
-	public List<Exam> getByTarget(String examTarget) throws OHServiceException {
-		return repository.findByExamTargetOrderByDescriptionAsc(examTarget);
+	public List<Exam> getByTarget(ExamTarget target) throws OHServiceException {
+		return repository.findByTargetOrderByDescriptionAsc(target);
 	}
 	
     
@@ -101,12 +102,9 @@ public class ExamIoOperations {
 	 * @throws OHServiceException 
 	 * 
 	 */
-	public List<Exam> getTargetAndType(String examTarget, String examType) throws OHServiceException {
-		return repository.findByExamTargetAndExamtypeDescriptionContainingOrderByExamtypeDescriptionAsc(examTarget, examType);
+	public List<Exam> getByTargetAndType(ExamTarget target, String examType) throws OHServiceException {
+		return repository.findByTargetAndExamtypeDescriptionOrderByDescriptionAsc(target, examType);
 	}
-	
-	
-	
 	
 	/**
 	 * Returns the list of {@link ExamType}s

@@ -1,6 +1,6 @@
 /*
  * Open Hospital (www.open-hospital.org)
- * Copyright © 2006-2023 Informatici Senza Frontiere (info@informaticisenzafrontiere.org)
+ * Copyright © 2006-2024 Informatici Senza Frontiere (info@informaticisenzafrontiere.org)
  *
  * Open Hospital is a free and open source software for healthcare data management.
  *
@@ -25,6 +25,8 @@ import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -76,7 +78,8 @@ public class Exam extends Auditable<String> {
 	
 	@NotNull
 	@Column(name="EXA_TARGET")
-	private String examTarget;
+	@Enumerated(EnumType.STRING) 
+    private ExamTarget target;
 	
 	public Exam() 
     {
@@ -84,17 +87,25 @@ public class Exam extends Auditable<String> {
     }
 	
 	public Exam(String code, String description, ExamType examtype,
-			Integer procedure, String defaultResult, String examTarget ) {
+			Integer procedure, String defaultResult) {
 		super();
 		this.code = code;
 		this.description = description;
 		this.examtype = examtype;
 		this.defaultResult = defaultResult;
 		this.procedure = procedure;
-		this.examTarget = examTarget;
-	
 	}
-
+	
+	public Exam(String code, String description, ExamType examtype,
+			Integer procedure, String defaultResult, ExamTarget target ) {
+		super();
+		this.code = code;
+		this.description = description;
+		this.examtype = examtype;
+		this.defaultResult = defaultResult;
+		this.procedure = procedure;
+		this.target = target;
+	}
 
 	public String getCode() {
 		return code;
@@ -144,18 +155,18 @@ public class Exam extends Auditable<String> {
 		this.procedure = procedure;
 	}
 	
-	public String getExamTarget() {
-		return examTarget;
+	public ExamTarget getTarget() {
+		return target;
 	}
 
-	public void setExamTarget(String examTarget) {
-		this.examTarget = examTarget;
+	public void setTarget(ExamTarget target) {
+		this.target = target;
 	}
 
 	@Override
 	public boolean equals(Object anObject) {
 		return anObject instanceof Exam && (getCode().equals(((Exam) anObject).getCode())
-				&& getDescription().equalsIgnoreCase(((Exam) anObject).getDescription()) && getExamtype().equals(((Exam) anObject).getExamtype()) && getExamTarget().equalsIgnoreCase(((Exam) anObject).getExamTarget()) );
+				&& getDescription().equalsIgnoreCase(((Exam) anObject).getDescription()) && getExamtype().equals(((Exam) anObject).getExamtype()) && getTarget().toString().equalsIgnoreCase(((Exam) anObject).getTarget().toString()) );
 	}
 
 	@Override
@@ -163,7 +174,6 @@ public class Exam extends Auditable<String> {
 		return getDescription();
 	}
 	
-
 	@Override
 	public int hashCode() {
 	    if (this.hashCode == 0) {
@@ -181,4 +191,7 @@ public class Exam extends Auditable<String> {
 		sbNameCode.append(getDescription().toLowerCase());
 		return sbNameCode.toString();
 	}
-}
+}   
+
+
+

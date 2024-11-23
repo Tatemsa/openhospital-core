@@ -1,6 +1,6 @@
 /*
  * Open Hospital (www.open-hospital.org)
- * Copyright © 2006-2023 Informatici Senza Frontiere (info@informaticisenzafrontiere.org)
+ * Copyright © 2006-2024 Informatici Senza Frontiere (info@informaticisenzafrontiere.org)
  *
  * Open Hospital is a free and open source software for healthcare data management.
  *
@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.isf.exa.model.Exam;
+import org.isf.exa.model.ExamTarget;
 import org.isf.exa.service.ExamIoOperations;
 import org.isf.exatype.model.ExamType;
 import org.isf.generaldata.MessageBundle;
@@ -102,31 +103,27 @@ public class ExamBrowsingManager {
 	
 	/**
 	 * Returns the list of {@link Exam}s by {@link ExamType} description
-	 * @param examTarget - the examTarget description
+	 * @param examTarget - the exam target for  pregnancy or not
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
-	public List<Exam> getByTarget(String examTarget) throws OHServiceException {
-		return ioOperations.getByTarget(examTarget);
+	public List<Exam> getByTarget(ExamTarget target) throws OHServiceException {
+		return ioOperations.getByTarget(target);
 	}
-	
-	
 	
 	/**
 	 * Returns the list of {@link Exam}s by {@link ExamTarget} description
-	 * @param examTarget - the examTarget for  pregnancy or not
+	 * @param examTarget - the exam target for  pregnancy or not
+	 * @param examType - Suggested change
 	 * @param examType - the exam type description
+	 * @param examType - the description of exam type
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
 	
-	public List<Exam> getByTargetAndType(String examTarget, String examType) throws OHServiceException {
-		return ioOperations.getTargetAndType(examTarget, examType);
+	public List<Exam> getByTargetAndType(ExamTarget target, String examType) throws OHServiceException {
+		return ioOperations.getByTargetAndType(target, examType);
 	}
-	
-	
-	
-	
 	
 	/**
 	 * Returns the list of {@link ExamType}s

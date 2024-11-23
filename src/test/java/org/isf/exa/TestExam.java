@@ -24,15 +24,16 @@ package org.isf.exa;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.isf.exa.model.Exam;
+import org.isf.exa.model.ExamTarget;
 import org.isf.exatype.model.ExamType;
 import org.isf.utils.exception.OHException;
 
 public class TestExam {
 
-	private String code = "ZZ";
-	private String description = "TestDescription";
-	private String defaultResult = "TestDefaultResult";
-	private String examTarget = "both";
+	private final String code = "ZZ";
+	private final String description = "TestDescription";
+	private final String defaultResult = "TestDefaultResult";
+	private final ExamTarget target =ExamTarget.both;
 
 	public Exam setup(ExamType examtype, int procedure, boolean usingSet) throws OHException {
 		Exam exam;
@@ -42,7 +43,7 @@ public class TestExam {
 			setParameters(exam, procedure, examtype);
 		} else {
 			// Create Exam with all parameters 
-			exam = new Exam(code, description, examtype, procedure, defaultResult, examTarget);
+			exam = new Exam(code, description, examtype, procedure, defaultResult, target);
 		}
 
 		return exam;
@@ -54,13 +55,13 @@ public class TestExam {
 		exam.setExamtype(examtype);
 		exam.setProcedure(procedure);
 		exam.setDefaultResult(defaultResult);
-		exam.setExamTarget(examTarget);
+		exam.setTarget(target);
 	}
 
 	public void check(Exam exam) {
 		assertThat(exam.getCode()).isEqualTo(code);
 		assertThat(exam.getDescription()).isEqualTo(description);
 		assertThat(exam.getDefaultResult()).isEqualTo(defaultResult);
-		assertThat(exam.getExamTarget()).isEqualTo(examTarget);
+		assertThat(exam.getTarget()).isEqualTo(target);
 	}
 }

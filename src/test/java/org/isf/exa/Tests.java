@@ -32,6 +32,7 @@ import org.isf.OHCoreTestCase;
 import org.isf.exa.manager.ExamBrowsingManager;
 import org.isf.exa.manager.ExamRowBrowsingManager;
 import org.isf.exa.model.Exam;
+import org.isf.exa.model.ExamTarget;
 import org.isf.exa.model.ExamRow;
 import org.isf.exa.service.ExamIoOperationRepository;
 import org.isf.exa.service.ExamIoOperations;
@@ -502,7 +503,7 @@ class Tests extends OHCoreTestCase {
 		Exam exam = examIoOperationRepository.findById(code).orElse(null);
 		assertThat(exam).isNotNull();
 		ExamType examType = testExamType.setup(false);
-		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult","both");
+		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult",ExamTarget.both);
 		assertThat(exam)
 				.isEqualTo(exam)
 				.isNotEqualTo(exam2)
@@ -523,7 +524,7 @@ class Tests extends OHCoreTestCase {
 		ExamRow examRow = examRowIoOperationRepository.findById(code).orElse(null);
 		assertThat(examRow).isNotNull();
 		ExamType examType = testExamType.setup(false);
-		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult","both");
+		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult", ExamTarget.both);
 		ExamRow examRow2 = new ExamRow(exam2, "NewDescription");
 		assertThat(examRow)
 				.isEqualTo(examRow)
