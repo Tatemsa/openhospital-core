@@ -326,17 +326,17 @@
 								<exclude>.editorconfig</exclude>
 								<exclude>.springBeans</exclude>
 								<exclude>**/README</exclude>
-								<exclude>doc/*/.txt</exclude>
+								<exclude>doc/**/*.txt</exclude>
 								<exclude>lib/**</exclude>
 								<exclude>sql/**</exclude>
 								<exclude>rsc/**</exclude>
 								<exclude>rsc-test/**</exclude>
 								<exclude>src/test/resources/**</exclude>
 								<exclude>src/main/resources/**</exclude>
-								<exclude>*/.properties</exclude>
-								<exclude>*/.xml</exclude>
-								<exclude>*/.yml</exclude>
-								<exclude>*/.jfd</exclude>
+								<exclude>**/*.properties</exclude>
+								<exclude>**/*.xml</exclude>
+								<exclude>**/*.yml</exclude>
+								<exclude>**/*.jfd</exclude>
 							</excludes>
 						</licenseSet>
 					</licenseSets>
@@ -381,7 +381,3 @@
 		</repository>
 	</repositories>
 </project>
-
-
-
-

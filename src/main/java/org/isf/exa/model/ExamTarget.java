@@ -22,8 +22,5 @@
 package org.isf.exa.model;
 
 public enum ExamTarget {
-	no,
-	prenatal,
-	postnatal,
-	both
+	no, prenatal, postnatal, both
 }

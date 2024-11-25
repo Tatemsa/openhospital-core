@@ -36,8 +36,7 @@ import org.isf.utils.exception.model.OHExceptionMessage;
 import org.springframework.stereotype.Component;
 
 /**
- * Class that provides gui separation from database operations and gives some useful logic
- * manipulations of the dynamic data (memory)
+ * Class that provides gui separation from database operations and gives some useful logic manipulations of the dynamic data (memory)
  */
 @Component
 public class ExamBrowsingManager {
@@ -50,6 +49,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Verify if the object is valid for CRUD and return a list of errors, if any
+	 * 
 	 * @param exam
 	 * @param insert {@code true} or updated {@code false}
 	 * @throws OHServiceException
@@ -74,6 +74,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Returns the list of {@link Exam}s
+	 * 
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
@@ -83,6 +84,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Returns the list of {@link Exam}s that matches passed description
+	 * 
 	 * @param description - the exam description
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
@@ -93,6 +95,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Returns the list of {@link Exam}s by {@link ExamType} description
+	 * 
 	 * @param description - the exam description
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
@@ -100,33 +103,36 @@ public class ExamBrowsingManager {
 	public List<Exam> getExamsByTypeDescription(String description) throws OHServiceException {
 		return ioOperations.getExamsByExamTypeDesc(description);
 	}
-	
+
 	/**
 	 * Returns the list of {@link Exam}s by {@link ExamType} description
-	 * @param examTarget - the exam target for  pregnancy or not
+	 * 
+	 * @param examTarget - the exam target for pregnancy or not
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
 	public List<Exam> getByTarget(ExamTarget target) throws OHServiceException {
 		return ioOperations.getByTarget(target);
 	}
-	
+
 	/**
 	 * Returns the list of {@link Exam}s by {@link ExamTarget} description
-	 * @param examTarget - the exam target for  pregnancy or not
+	 * 
+	 * @param examTarget - the exam target for pregnancy or not
 	 * @param examType - Suggested change
 	 * @param examType - the exam type description
 	 * @param examType - the description of exam type
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
-	
+
 	public List<Exam> getByTargetAndType(ExamTarget target, String examType) throws OHServiceException {
 		return ioOperations.getByTargetAndType(target, examType);
 	}
-	
+
 	/**
 	 * Returns the list of {@link ExamType}s
+	 * 
 	 * @return the list of {@link ExamType}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
@@ -136,6 +142,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * This function controls the presence of a record with the same key as in the parameter; Returns false if the query finds no record, else returns true
+	 * 
 	 * @param exam the {@link Exam}
 	 * @return {@code true} if the Exam code has already been used, {@code false} otherwise
 	 * @throws OHServiceException
@@ -146,6 +153,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Insert a new {@link Exam} with exam rows.
+	 * 
 	 * @param payload - the {@link Exam} to insert
 	 * @param rows - the {@link List<String>} to associate as exam rows
 	 * @return the newly persisted {@link Exam}.
@@ -157,6 +165,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Update an existing {@link Exam}with exam rows.
+	 * 
 	 * @param payload - the {@link Exam} to insert
 	 * @param rows - the {@link List<String>} to associate as exam rows
 	 * @return the newly persisted {@link Exam}.
@@ -168,6 +177,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Insert a new {@link Exam}.
+	 * 
 	 * @param exam - the {@link Exam} to insert
 	 * @return the newly persisted {@link Exam}.
 	 * @throws OHServiceException
@@ -179,7 +189,8 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Updates an existing {@link Exam}.
-	 * @param exam -  the {@link Exam} to update
+	 * 
+	 * @param exam - the {@link Exam} to update
 	 * @return {@code true} if the existing {@link Exam} has been updated, {@code false} otherwise
 	 * @throws OHServiceException
 	 */
@@ -190,6 +201,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Delete an {@link Exam}
+	 * 
 	 * @param exam - the {@link Exam} to delete
 	 * @throws OHServiceException
 	 */
@@ -199,6 +211,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Find exam by code
+	 * 
 	 * @param code - the code
 	 * @return The exam if found, {@code null} otherwise.
 	 * @throws OHServiceException

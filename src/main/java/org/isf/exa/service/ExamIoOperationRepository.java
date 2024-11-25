@@ -39,7 +39,7 @@ public interface ExamIoOperationRepository extends JpaRepository<Exam, String> {
 	List<Exam> findByDescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(String description);
 
 	List<Exam> findByExamtype_DescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(String description);
-	
+
 	List<Exam> findByTargetOrderByDescriptionAsc(ExamTarget target);
 
 	List<Exam> findByTargetAndExamtypeDescriptionOrderByDescriptionAsc(ExamTarget target, String examType);
