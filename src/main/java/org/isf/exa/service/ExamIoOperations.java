@@ -87,9 +87,9 @@ public class ExamIoOperations {
 	}
 
 	/**
-	 * Returns the filtered list of {@link Exam}s by {@link ExamTarget}
+	 * Returns the list of {@link Exam}s by {@link ExamTarget}
 	 * 
-	 * @param target - Exam target to consider for the filtering
+	 * @param target - the exam target
 	 * @return the list of {@link Exam}s
 	 * @throws OHServiceException
 	 */
@@ -98,10 +98,10 @@ public class ExamIoOperations {
 	}
 
 	/**
-	 * Filters exams by target and type
+	 * Returns the list of {@link Exam}s
 	 * 
-	 * @param target - Exam target to consider for the filtering
-	 * @param type - Exam type to consider for the filtering
+	 * @param target - the exam target
+	 * @param examType - the exam type
 	 * @return the list of {@link Exam}s
 	 * @throws OHServiceException
 	 * 

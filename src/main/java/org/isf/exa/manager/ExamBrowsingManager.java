@@ -105,9 +105,9 @@ public class ExamBrowsingManager {
 	}
 
 	/**
-	 * Returns the list of {@link Exam}s by {@link ExamType} description
+	 * Returns the list of {@link Exam}s
 	 * 
-	 * @param examTarget - the exam target for pregnancy or not
+	 * @param examTarget - the exam target 
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
@@ -116,12 +116,10 @@ public class ExamBrowsingManager {
 	}
 
 	/**
-	 * Returns the list of {@link Exam}s by {@link ExamTarget} description
+	 * Returns the list of {@link Exam}s 
 	 * 
-	 * @param examTarget - the exam target for pregnancy or not
-	 * @param examType - Suggested change
-	 * @param examType - the exam type description
-	 * @param examType - the description of exam type
+	 * @param examTarget - the exam target 
+	 * @param examType - the exam type
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
