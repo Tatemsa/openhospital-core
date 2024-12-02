@@ -25,6 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.lang.reflect.Method;
+import java.util.Comparator;
 import java.util.List;
 
 import org.assertj.core.api.Condition;
@@ -171,6 +172,36 @@ class Tests extends OHCoreTestCase {
 		assertThat(foundExamType).isNotNull();
 		List<ExamType> examTypes = examIoOperation.getExamType();
 		assertThat(examTypes).contains(foundExamType);
+	}
+	
+	@Test
+	void testIoGetExamTargetExam() throws Exception {
+		ExamTarget target = setupTestExamTarget(false);
+		Exam examWithTarget = new Exam();
+		examWithTarget.setTarget(target);
+		List<Exam> examTargetList = examIoOperation.getByTarget(target);
+	    assertThat(examTargetList).allMatch(exam -> exam.getTarget().equals(target));
+	}
+	
+	@Test
+	void testGetByTargetAndType() throws OHServiceException, OHException {
+	   
+	    ExamTarget target = setupTestExamTarget(false); 
+	    ExamType examType =  new ExamType("ZZ", "TestDescription");
+	    List<Exam> exams = examIoOperation.getByTargetAndType(target, examType.getDescription());
+
+	    assertThat(exams).isSortedAccordingTo(Comparator.comparing(Exam::getDescription));
+	}
+
+	@Test
+	void testGetByTargetAndTypeNoMatchingExams() throws OHServiceException {
+	    // Setup: Create a test ExamTarget and ExamType with no matching exams
+	    ExamTarget target = setupTestExamTarget(false);
+	    String examType = "NonExistentType";
+
+	    List<Exam> exams = examIoOperation.getByTargetAndType(target, examType);
+
+	    assertThat(exams).isEmpty();
 	}
 
 	@Test
@@ -604,4 +635,15 @@ class Tests extends OHCoreTestCase {
 		examTypeIoOperationRepository.saveAndFlush(examType);
 		return examType.getCode();
 	}
+
+	private ExamTarget setupTestExamTarget(boolean saveToDb) throws OHServiceException {
+	    ExamTarget target = ExamTarget.prenatal; 
+	    if (saveToDb) {
+	        Exam exam = new Exam(); 
+	        exam.setTarget(target);
+	        examIoOperation.newExam(exam);
+	    }
+	    return target;
+	}
+
 }
