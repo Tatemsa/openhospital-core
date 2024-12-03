@@ -48,6 +48,7 @@ import org.isf.utils.exception.OHException;
 import org.isf.utils.exception.OHServiceException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -173,35 +174,34 @@ class Tests extends OHCoreTestCase {
 		List<ExamType> examTypes = examIoOperation.getExamType();
 		assertThat(examTypes).contains(foundExamType);
 	}
-	
+
 	@Test
 	void testIoGetExamTargetExam() throws Exception {
 		ExamTarget target = setupTestExamTarget(false);
 		Exam examWithTarget = new Exam();
 		examWithTarget.setTarget(target);
 		List<Exam> examTargetList = examIoOperation.getByTarget(target);
-	    assertThat(examTargetList).allMatch(exam -> exam.getTarget().equals(target));
+		assertThat(examTargetList).allMatch(exam -> exam.getTarget().equals(target));
 	}
-	
+
 	@Test
 	void testGetByTargetAndType() throws OHServiceException, OHException {
-	   
-	    ExamTarget target = setupTestExamTarget(false); 
-	    ExamType examType =  new ExamType("ZZ", "TestDescription");
-	    List<Exam> exams = examIoOperation.getByTargetAndType(target, examType.getDescription());
+		ExamTarget target = setupTestExamTarget(false);
+		ExamType examType = new ExamType("ZZ", "TestDescription");
+		List<Exam> exams = examIoOperation.getByTargetAndType(target, examType.getDescription());
 
-	    assertThat(exams).isSortedAccordingTo(Comparator.comparing(Exam::getDescription));
+		assertThat(exams).isSortedAccordingTo(Comparator.comparing(Exam::getDescription));
 	}
 
+	@DisplayName(" Setup: Create a test ExamTarget and ExamType with no matching exams")
 	@Test
 	void testGetByTargetAndTypeNoMatchingExams() throws OHServiceException {
-	    // Setup: Create a test ExamTarget and ExamType with no matching exams
-	    ExamTarget target = setupTestExamTarget(false);
-	    String examType = "NonExistentType";
+		ExamTarget target = setupTestExamTarget(false);
+		String examType = "NonExistentType";
 
-	    List<Exam> exams = examIoOperation.getByTargetAndType(target, examType);
+		List<Exam> exams = examIoOperation.getByTargetAndType(target, examType);
 
-	    assertThat(exams).isEmpty();
+		assertThat(exams).isEmpty();
 	}
 
 	@Test
@@ -482,20 +482,18 @@ class Tests extends OHCoreTestCase {
 		// code = ""
 		exam.setCode("");
 		assertThatThrownBy(() -> examBrowsingManager.updateExam(exam))
-				.isInstanceOf(OHDataValidationException.class)
-				.has(
-						new Condition<Throwable>(
-                                e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error")
-				);
+						.isInstanceOf(OHDataValidationException.class)
+						.has(
+										new Condition<Throwable>(
+														e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error"));
 		// description = ""
 		exam.setCode(code);
 		exam.setDescription("");
 		assertThatThrownBy(() -> examBrowsingManager.updateExam(exam))
-				.isInstanceOf(OHDataValidationException.class)
-				.has(
-						new Condition<Throwable>(
-                                e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error")
-				);
+						.isInstanceOf(OHDataValidationException.class)
+						.has(
+										new Condition<Throwable>(
+														e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error"));
 	}
 
 	@Test
@@ -506,11 +504,10 @@ class Tests extends OHCoreTestCase {
 		Exam exam2 = testExam.setup(examType, 1, false);
 		exam2.setCode(code);
 		assertThatThrownBy(() -> examBrowsingManager.newExam(exam2))
-				.isInstanceOf(OHDataIntegrityViolationException.class)
-				.has(
-						new Condition<Throwable>(
-                                e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error")
-				);
+						.isInstanceOf(OHDataIntegrityViolationException.class)
+						.has(
+										new Condition<Throwable>(
+														e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error"));
 	}
 
 	@Test
@@ -521,11 +518,10 @@ class Tests extends OHCoreTestCase {
 		// description = ""
 		examRow.setDescription("");
 		assertThatThrownBy(() -> examRowBrowsingManager.newExamRow(examRow))
-				.isInstanceOf(OHDataValidationException.class)
-				.has(
-						new Condition<Throwable>(
-                                e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error")
-				);
+						.isInstanceOf(OHDataValidationException.class)
+						.has(
+										new Condition<Throwable>(
+														e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error"));
 	}
 
 	@Test
@@ -534,11 +530,11 @@ class Tests extends OHCoreTestCase {
 		Exam exam = examIoOperationRepository.findById(code).orElse(null);
 		assertThat(exam).isNotNull();
 		ExamType examType = testExamType.setup(false);
-		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult",ExamTarget.both);
+		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult", ExamTarget.both);
 		assertThat(exam)
-				.isEqualTo(exam)
-				.isNotEqualTo(exam2)
-				.isNotEqualTo("xyzzy");
+						.isEqualTo(exam)
+						.isNotEqualTo(exam2)
+						.isNotEqualTo("xyzzy");
 		exam2.setCode(exam.getCode());
 		exam2.setDescription(exam.getDescription());
 		exam2.setExamtype(exam.getExamtype());
@@ -558,9 +554,9 @@ class Tests extends OHCoreTestCase {
 		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult", ExamTarget.both);
 		ExamRow examRow2 = new ExamRow(exam2, "NewDescription");
 		assertThat(examRow)
-				.isEqualTo(examRow)
-				.isNotEqualTo(examRow2)
-				.isNotEqualTo("xyzzy");
+						.isEqualTo(examRow)
+						.isNotEqualTo(examRow2)
+						.isNotEqualTo("xyzzy");
 		examRow2.setCode(examRow.getCode());
 		examRow2.setExamCode(examRow.getExamCode());
 		examRow2.setDescription(examRow.getDescription());
@@ -637,13 +633,13 @@ class Tests extends OHCoreTestCase {
 	}
 
 	private ExamTarget setupTestExamTarget(boolean saveToDb) throws OHServiceException {
-	    ExamTarget target = ExamTarget.prenatal; 
-	    if (saveToDb) {
-	        Exam exam = new Exam(); 
-	        exam.setTarget(target);
-	        examIoOperation.newExam(exam);
-	    }
-	    return target;
+		ExamTarget target = ExamTarget.prenatal;
+		if (saveToDb) {
+			Exam exam = new Exam();
+			exam.setTarget(target);
+			examIoOperation.newExam(exam);
+		}
+		return target;
 	}
 
 }
