@@ -85,7 +85,7 @@ public class ExamBrowsingManager {
 	/**
 	 * Returns the list of {@link Exam}s that matches passed description
 	 * 
-	 * @param description - the exam description
+	 * @param description the exam description
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
@@ -96,7 +96,7 @@ public class ExamBrowsingManager {
 	/**
 	 * Returns the list of {@link Exam}s by {@link ExamType} description
 	 * 
-	 * @param description - the exam description
+	 * @param description the exam description
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
@@ -107,7 +107,7 @@ public class ExamBrowsingManager {
 	/**
 	 * Returns the list of {@link Exam}s
 	 * 
-	 * @param examTarget - the exam target 
+	 * @param examTarget - the exam target
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
@@ -116,9 +116,9 @@ public class ExamBrowsingManager {
 	}
 
 	/**
-	 * Returns the list of {@link Exam}s 
+	 * Returns the list of {@link Exam}s
 	 * 
-	 * @param examTarget - the exam target 
+	 * @param examTarget - the exam target
 	 * @param examType - the exam type
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
@@ -152,8 +152,8 @@ public class ExamBrowsingManager {
 	/**
 	 * Insert a new {@link Exam} with exam rows.
 	 * 
-	 * @param payload - the {@link Exam} to insert
-	 * @param rows - the {@link List<String>} to associate as exam rows
+	 * @param payload the {@link Exam} to insert
+	 * @param rows the {@link List<String>} to associate as exam rows
 	 * @return the newly persisted {@link Exam}.
 	 * @throws OHServiceException
 	 */
@@ -164,8 +164,8 @@ public class ExamBrowsingManager {
 	/**
 	 * Update an existing {@link Exam}with exam rows.
 	 * 
-	 * @param payload - the {@link Exam} to insert
-	 * @param rows - the {@link List<String>} to associate as exam rows
+	 * @param payload the {@link Exam} to insert
+	 * @param rows the {@link List<String>} to associate as exam rows
 	 * @return the newly persisted {@link Exam}.
 	 * @throws OHServiceException
 	 */
@@ -176,7 +176,7 @@ public class ExamBrowsingManager {
 	/**
 	 * Insert a new {@link Exam}.
 	 * 
-	 * @param exam - the {@link Exam} to insert
+	 * @param exam the {@link Exam} to insert
 	 * @return the newly persisted {@link Exam}.
 	 * @throws OHServiceException
 	 */
@@ -188,7 +188,7 @@ public class ExamBrowsingManager {
 	/**
 	 * Updates an existing {@link Exam}.
 	 * 
-	 * @param exam - the {@link Exam} to update
+	 * @param exam the {@link Exam} to update
 	 * @return {@code true} if the existing {@link Exam} has been updated, {@code false} otherwise
 	 * @throws OHServiceException
 	 */
@@ -200,7 +200,7 @@ public class ExamBrowsingManager {
 	/**
 	 * Delete an {@link Exam}
 	 * 
-	 * @param exam - the {@link Exam} to delete
+	 * @param exam the {@link Exam} to delete
 	 * @throws OHServiceException
 	 */
 	public void deleteExam(Exam exam) throws OHServiceException {
@@ -210,7 +210,7 @@ public class ExamBrowsingManager {
 	/**
 	 * Find exam by code
 	 * 
-	 * @param code - the code
+	 * @param code the code
 	 * @return The exam if found, {@code null} otherwise.
 	 * @throws OHServiceException
 	 */
