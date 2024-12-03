@@ -33,7 +33,7 @@ public class TestExam {
 	private final String code = "ZZ";
 	private final String description = "TestDescription";
 	private final String defaultResult = "TestDefaultResult";
-	private final ExamTarget target =ExamTarget.both;
+	private final ExamTarget target = ExamTarget.both;
 
 	public Exam setup(ExamType examtype, int procedure, boolean usingSet) throws OHException {
 		Exam exam;
