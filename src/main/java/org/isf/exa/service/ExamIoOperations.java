@@ -46,7 +46,7 @@ public class ExamIoOperations {
 	private final ExamTypeIoOperationRepository typeRepository;
 
 	public ExamIoOperations(ExamIoOperationRepository examIoOperationRepository, ExamRowIoOperationRepository examRowIoOperationRepository,
-					ExamTypeIoOperationRepository examTypeIoOperationRepository) {
+		ExamTypeIoOperationRepository examTypeIoOperationRepository) {
 		this.repository = examIoOperationRepository;
 		this.rowRepository = examRowIoOperationRepository;
 		this.typeRepository = examTypeIoOperationRepository;
@@ -54,7 +54,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Returns the list of {@link Exam}s
-	 * 
 	 * @return the list of {@link Exam}s
 	 * @throws OHServiceException
 	 */
@@ -64,31 +63,28 @@ public class ExamIoOperations {
 
 	/**
 	 * Returns the list of {@link Exam}s that matches passed description
-	 * 
 	 * @param description - the exam description
 	 * @return the list of {@link Exam}s
 	 * @throws OHServiceException
 	 */
 	public List<Exam> getExamsByDesc(String description) throws OHServiceException {
-		return description != null ? repository.findByDescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(description)
-						: repository.findByOrderByDescriptionAscDescriptionAsc();
+		return description != null ? repository.findByDescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(description) :
+			repository.findByOrderByDescriptionAscDescriptionAsc();
 	}
 
 	/**
 	 * Returns the list of {@link Exam}s by {@link ExamType} description
-	 * 
 	 * @param description - the exam description
 	 * @return the list of {@link Exam}s
 	 * @throws OHServiceException
 	 */
 	public List<Exam> getExamsByExamTypeDesc(String description) throws OHServiceException {
-		return description != null ? repository.findByExamtype_DescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(description)
-						: repository.findByOrderByDescriptionAscDescriptionAsc();
+		return description != null ? repository.findByExamtype_DescriptionContainingOrderByExamtypeDescriptionAscDescriptionAsc(description) :
+			repository.findByOrderByDescriptionAscDescriptionAsc();
 	}
 
 	/**
 	 * Returns the list of {@link Exam}s by {@link ExamTarget}
-	 * 
 	 * @param target - the exam target
 	 * @return the list of {@link Exam}s
 	 * @throws OHServiceException
@@ -112,7 +108,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Returns the list of {@link ExamType}s
-	 * 
 	 * @return the list of {@link ExamType}s
 	 * @throws OHServiceException
 	 */
@@ -122,7 +117,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Insert a new {@link Exam} with exam rows.
-	 * 
 	 * @param payload - the {@link Exam} to insert
 	 * @param rows - the {@link List<String>} to associate as exam rows
 	 * @return the newly persisted {@link Exam}.
@@ -142,7 +136,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Update an existing {@link Exam} with exam rows.
-	 * 
 	 * @param payload - the {@link Exam} to insert
 	 * @param rows - the {@link List<String>} to associate as exam rows
 	 * @return the newly persisted {@link Exam}.
@@ -158,7 +151,7 @@ public class ExamIoOperations {
 		} else {
 			List<ExamRow> rowsToRemove = examRows.stream().filter(examRow -> !rows.contains(examRow.getDescription())).toList();
 			List<ExamRow> rowsToAdd = rows.stream().filter(row -> examRows.stream().noneMatch(examRow -> Objects.equals(row, examRow.getDescription())))
-							.map(description -> new ExamRow(exam, description)).toList();
+				.map(description -> new ExamRow(exam, description)).toList();
 
 			if (!rowsToRemove.isEmpty()) {
 				rowRepository.deleteAll(rowsToRemove);
@@ -172,7 +165,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Insert a new {@link Exam}.
-	 * 
 	 * @param exam - the {@link Exam} to insert
 	 * @return the newly persisted {@link Exam}.
 	 * @throws OHServiceException
@@ -183,7 +175,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Insert a new {@link ExamRow}.
-	 * 
 	 * @param examRow - the {@link ExamRow} to insert
 	 * @return the newly persisted {@link ExamRow}.
 	 * @throws OHServiceException
@@ -194,7 +185,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Update an already existing {@link Exam}.
-	 * 
 	 * @param exam - the {@link Exam} to update
 	 * @return the updated {@link Exam}.
 	 * @throws OHServiceException
@@ -205,7 +195,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Delete an {@link Exam}
-	 * 
 	 * @param exam - the {@link Exam} to delete
 	 * @throws OHServiceException
 	 */
@@ -216,7 +205,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Delete an {@link ExamRow}.
-	 * 
 	 * @param examRow - the {@link ExamRow} to delete
 	 * @throws OHServiceException
 	 */
@@ -226,7 +214,6 @@ public class ExamIoOperations {
 
 	/**
 	 * This function controls the presence of a record with the same key as in the parameter; Returns false if the query finds no record, else returns true
-	 * 
 	 * @param exam the {@link Exam}
 	 * @return {@code true} if the Exam code has already been used, {@code false} otherwise
 	 * @throws OHServiceException
@@ -237,7 +224,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Sanitize the given {@link String} value. This method is maintained only for backward compatibility.
-	 * 
 	 * @param value the value to sanitize.
 	 * @return the sanitized value or {@code null} if the passed value is {@code null}.
 	 */
@@ -250,7 +236,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Checks if the code is already in use
-	 * 
 	 * @param code - the exam code
 	 * @return {@code true} if the code is already in use, {@code false} otherwise
 	 * @throws OHServiceException
@@ -261,7 +246,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Checks if the code is already in use
-	 * 
 	 * @param code - the exam row code
 	 * @return {@code true} if the code is already in use, {@code false} otherwise
 	 * @throws OHServiceException
@@ -272,7 +256,6 @@ public class ExamIoOperations {
 
 	/**
 	 * Find exam by code
-	 * 
 	 * @param code - the code
 	 * @return The exam if found, {@code null} otherwise.
 	 * @throws OHServiceException

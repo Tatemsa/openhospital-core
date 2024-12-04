@@ -40,7 +40,7 @@ import org.isf.utils.db.Auditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "OH_EXAM")
+@Table(name="OH_EXAM")
 @EntityListeners(AuditingEntityListener.class)
 @AttributeOverride(name = "createdBy", column = @Column(name = "EXA_CREATED_BY", updatable = false))
 @AttributeOverride(name = "createdDate", column = @Column(name = "EXA_CREATED_DATE", updatable = false))
@@ -50,43 +50,44 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class Exam extends Auditable<String> {
 
 	@Id
-	@Column(name = "EXA_ID_A")
+	@Column(name="EXA_ID_A")
 	private String code;
 
 	@NotNull
-	@Column(name = "EXA_DESC")
+	@Column(name="EXA_DESC")
 	private String description;
 
 	@NotNull
-	@Column(name = "EXA_PROC")
+	@Column(name="EXA_PROC")
 	private Integer procedure;
 
-	@Column(name = "EXA_DEFAULT")
+	@Column(name="EXA_DEFAULT")
 	private String defaultResult;
 
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "EXA_EXC_ID_A")
+	@JoinColumn(name="EXA_EXC_ID_A")
 	private ExamType examtype;
 
 	@Version
-	@Column(name = "EXA_LOCK")
+	@Column(name="EXA_LOCK")
 	private Integer lock;
 
 	@Transient
 	private volatile int hashCode;
 
 	@NotNull
-	@Column(name = "EXA_TARGET")
+	@Column(name="EXA_TARGET")
 	@Enumerated(EnumType.STRING)
 	private ExamTarget target;
 
-	public Exam() {
+	public Exam()
+	{
 		super();
 	}
 
 	public Exam(String code, String description, ExamType examtype,
-					Integer procedure, String defaultResult) {
+			Integer procedure, String defaultResult) {
 		super();
 		this.code = code;
 		this.description = description;
@@ -96,7 +97,7 @@ public class Exam extends Auditable<String> {
 	}
 
 	public Exam(String code, String description, ExamType examtype,
-					Integer procedure, String defaultResult, ExamTarget target) {
+			 Integer procedure, String defaultResult, ExamTarget target) {
 		this(code, description, examtype, procedure, defaultResult);
 		this.target = target;
 	}
@@ -171,13 +172,13 @@ public class Exam extends Auditable<String> {
 
 	@Override
 	public int hashCode() {
-		if (this.hashCode == 0) {
-			final int m = 23;
-			int c = 133;
-			c = m * c + code.hashCode();
-			this.hashCode = c;
-		}
-		return this.hashCode;
+	    if (this.hashCode == 0) {
+	        final int m = 23;
+	        int c = 133;
+	        c = m * c + code.hashCode();
+	        this.hashCode = c;
+	    }
+	    return this.hashCode;
 	}
 
 	public String getSearchString() {
