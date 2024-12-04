@@ -32,7 +32,7 @@ public class TestMortuaryStay {
 	private String description = "Stays in long time";
 	private int daysMax = 8;
 	private int daysMin = 3;
-	private int deleted = 0;
+	private boolean deleted = false;
 
 	public MortuaryStay setup(boolean usingSet) throws OHException {
 		MortuaryStay mortuary;
@@ -52,7 +52,7 @@ public class TestMortuaryStay {
 		mortuary.setDescription(description);
 		mortuary.setMaxDays(daysMax);
 		mortuary.setMinDays(daysMin);
-		mortuary.setDeleted(0);
+		mortuary.setDeleted(false);
 	}
 
 	public void check(MortuaryStay mortuary) {
@@ -61,6 +61,6 @@ public class TestMortuaryStay {
 		assertThat(mortuary.getDescription()).isEqualTo(description);
 		assertThat(mortuary.getMaxDays()).isEqualTo(daysMax);
 		assertThat(mortuary.getMinDays()).isEqualTo(daysMin);
-		assertThat(mortuary.getDeleted()).isEqualTo(0);
+		assertThat(mortuary.getDeleted()).isEqualTo(false);
 	}
 }

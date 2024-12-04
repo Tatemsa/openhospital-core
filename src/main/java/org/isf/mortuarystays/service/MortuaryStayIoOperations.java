@@ -25,12 +25,9 @@ import java.util.List;
 
 import org.isf.generaldata.MessageBundle;
 import org.isf.mortuarystays.model.MortuaryStay;
-import org.isf.utils.db.TranslateOHServiceException;
 import org.isf.utils.exception.OHServiceException;
 import org.isf.utils.exception.model.OHExceptionMessage;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
 
 @Component
 public class MortuaryStayIoOperations {
@@ -44,8 +41,8 @@ public class MortuaryStayIoOperations {
 	 * Retrieves all stored {@link MortuaryStay}s
 	 * @return
 	 */
-	public List<MortuaryStay> getAll() throws OHServiceException {
-		return repository.findAllNotDeleted();
+	public List<MortuaryStay> getAll(boolean deleted) throws OHServiceException {
+		return repository.findByDeletedOrderByNameAsc(deleted);
 	}
 
 	/**

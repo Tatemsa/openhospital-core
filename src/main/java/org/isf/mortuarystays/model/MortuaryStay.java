@@ -62,8 +62,9 @@ public class MortuaryStay extends Auditable<String> {
 	@Column(name = "MRTST_MIN_DAYS")
 	private int minDays;
 
+	@NotNull
 	@Column(name = "MRTST_DELETED")
-	private int deleted;
+	private boolean deleted = false;
 
 	public MortuaryStay() {
 		super();
@@ -103,10 +104,10 @@ public class MortuaryStay extends Auditable<String> {
 	public int getMinDays() {
 		return minDays;
 	}
-	public void setDeleted(int deleted) {
+	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-	public int getDeleted() {
+	public boolean getDeleted() {
 		return deleted;
 	}
 	public void setMinDays(int minDays) {

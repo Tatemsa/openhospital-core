@@ -48,8 +48,8 @@ public class MortuaryStayManager {
 	 * @return the stored Mortuaries.
 	 * @throws OHServiceException
 	 */
-	public List<MortuaryStay> getAll() throws OHServiceException {
-		return ioOperations.getAll();
+	public List<MortuaryStay> getAll(boolean deleted) throws OHServiceException {
+		return ioOperations.getAll(deleted);
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class MortuaryStayManager {
 	 * @throws OHServiceException
 	 */
 	public MortuaryStay delete(MortuaryStay mortuary) throws OHServiceException {
-		mortuary.setDeleted(1);
+		mortuary.setDeleted(true);
 		return ioOperations.delete(mortuary);
 	}
 

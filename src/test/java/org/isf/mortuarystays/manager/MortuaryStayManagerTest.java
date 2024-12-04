@@ -70,7 +70,7 @@ public class MortuaryStayManagerTest extends OHCoreTestCase {
 		String code = setupTestMortuaryStays(false);
 		MortuaryStay foundMortuary = mortuaryStayBrowserManager.getByCode(code);
 		assertThat(foundMortuary).isNotNull();
-		List<MortuaryStay> mortuaries = mortuaryStayBrowserManager.getAll();
+		List<MortuaryStay> mortuaries = mortuaryStayBrowserManager.getAll(false);
 		assertThat(mortuaries.size()).isEqualTo(1);
 	}
 
@@ -105,7 +105,7 @@ public class MortuaryStayManagerTest extends OHCoreTestCase {
 		assertThat(foundMortuary).isNotNull();
 		MortuaryStay deletedMortuary = mortuaryStayBrowserManager.delete(foundMortuary);
 		assertThat(deletedMortuary).isNotNull();
-		assertThat(deletedMortuary.getDeleted()).isEqualTo(1);
+		assertThat(deletedMortuary.getDeleted()).isEqualTo(true);
 	}
 
 	@Test
