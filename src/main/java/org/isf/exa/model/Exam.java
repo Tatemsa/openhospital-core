@@ -85,7 +85,7 @@ public class Exam extends Auditable<String> {
 	{
 		super();
 	}
-
+	
 	public Exam(String code, String description, ExamType examtype,
 			Integer procedure, String defaultResult) {
 		super();
@@ -161,8 +161,8 @@ public class Exam extends Auditable<String> {
 	@Override
 	public boolean equals(Object anObject) {
 		return anObject instanceof Exam && (getCode().equals(((Exam) anObject).getCode())
-						&& getDescription().equalsIgnoreCase(((Exam) anObject).getDescription()) && getExamtype().equals(((Exam) anObject).getExamtype())
-						&& getTarget().toString().equalsIgnoreCase(((Exam) anObject).getTarget().toString()));
+			   && getDescription().equalsIgnoreCase(((Exam) anObject).getDescription()) && getExamtype().equals(((Exam) anObject).getExamtype())
+			   && getTarget().toString().equalsIgnoreCase(((Exam) anObject).getTarget().toString()));
 	}
 
 	@Override

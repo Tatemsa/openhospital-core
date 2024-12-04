@@ -482,18 +482,20 @@ class Tests extends OHCoreTestCase {
 		// code = ""
 		exam.setCode("");
 		assertThatThrownBy(() -> examBrowsingManager.updateExam(exam))
-						.isInstanceOf(OHDataValidationException.class)
-						.has(
-										new Condition<Throwable>(
-														e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error"));
+				.isInstanceOf(OHDataValidationException.class)
+				.has(
+						new Condition<Throwable>(
+                                e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error")
+				);
 		// description = ""
 		exam.setCode(code);
 		exam.setDescription("");
 		assertThatThrownBy(() -> examBrowsingManager.updateExam(exam))
-						.isInstanceOf(OHDataValidationException.class)
-						.has(
-										new Condition<Throwable>(
-														e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error"));
+				.isInstanceOf(OHDataValidationException.class)
+				.has(
+						new Condition<Throwable>(
+                                e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error")
+				);
 	}
 
 	@Test
@@ -504,10 +506,11 @@ class Tests extends OHCoreTestCase {
 		Exam exam2 = testExam.setup(examType, 1, false);
 		exam2.setCode(code);
 		assertThatThrownBy(() -> examBrowsingManager.newExam(exam2))
-						.isInstanceOf(OHDataIntegrityViolationException.class)
-						.has(
-										new Condition<Throwable>(
-														e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error"));
+				.isInstanceOf(OHDataIntegrityViolationException.class)
+				.has(
+						new Condition<Throwable>(
+                                e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error")
+				);
 	}
 
 	@Test
@@ -518,10 +521,11 @@ class Tests extends OHCoreTestCase {
 		// description = ""
 		examRow.setDescription("");
 		assertThatThrownBy(() -> examRowBrowsingManager.newExamRow(examRow))
-						.isInstanceOf(OHDataValidationException.class)
-						.has(
-										new Condition<Throwable>(
-														e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error"));
+				.isInstanceOf(OHDataValidationException.class)
+				.has(
+						new Condition<Throwable>(
+                                e -> ((OHServiceException) e).getMessages().size() == 1, "Expecting single validation error")
+				);
 	}
 
 	@Test
@@ -532,9 +536,9 @@ class Tests extends OHCoreTestCase {
 		ExamType examType = testExamType.setup(false);
 		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult", ExamTarget.both);
 		assertThat(exam)
-						.isEqualTo(exam)
-						.isNotEqualTo(exam2)
-						.isNotEqualTo("xyzzy");
+				.isEqualTo(exam)
+				.isNotEqualTo(exam2)
+				.isNotEqualTo("xyzzy");
 		exam2.setCode(exam.getCode());
 		exam2.setDescription(exam.getDescription());
 		exam2.setExamtype(exam.getExamtype());
@@ -554,9 +558,9 @@ class Tests extends OHCoreTestCase {
 		Exam exam2 = new Exam("XXX", "TestDescription", examType, 1, "TestDefaultResult", ExamTarget.both);
 		ExamRow examRow2 = new ExamRow(exam2, "NewDescription");
 		assertThat(examRow)
-						.isEqualTo(examRow)
-						.isNotEqualTo(examRow2)
-						.isNotEqualTo("xyzzy");
+				.isEqualTo(examRow)
+				.isNotEqualTo(examRow2)
+				.isNotEqualTo("xyzzy");
 		examRow2.setCode(examRow.getCode());
 		examRow2.setExamCode(examRow.getExamCode());
 		examRow2.setDescription(examRow.getDescription());
