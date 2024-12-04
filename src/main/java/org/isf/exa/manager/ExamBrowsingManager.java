@@ -150,6 +150,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Insert a new {@link Exam} with exam rows.
+	 * 
 	 * @param payload the {@link Exam} to insert
 	 * @param rows the {@link List<String>} to associate as exam rows
 	 * @return the newly persisted {@link Exam}.
@@ -161,6 +162,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Update an existing {@link Exam}with exam rows.
+	 * 
 	 * @param payload the {@link Exam} to insert
 	 * @param rows the {@link List<String>} to associate as exam rows
 	 * @return the newly persisted {@link Exam}.
@@ -172,6 +174,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Insert a new {@link Exam}.
+	 * 
 	 * @param exam the {@link Exam} to insert
 	 * @return the newly persisted {@link Exam}.
 	 * @throws OHServiceException
@@ -183,6 +186,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Updates an existing {@link Exam}.
+	 * 
 	 * @param exam the {@link Exam} to update
 	 * @return {@code true} if the existing {@link Exam} has been updated, {@code false} otherwise
 	 * @throws OHServiceException
@@ -194,6 +198,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Delete an {@link Exam}
+	 * 
 	 * @param exam the {@link Exam} to delete
 	 * @throws OHServiceException
 	 */
@@ -203,6 +208,7 @@ public class ExamBrowsingManager {
 
 	/**
 	 * Find exam by code
+	 * 
 	 * @param code the code
 	 * @return The exam if found, {@code null} otherwise.
 	 * @throws OHServiceException
