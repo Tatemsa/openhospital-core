@@ -87,7 +87,7 @@ public class ExamIoOperations {
 	 * Returns the list of {@link Exam}s by {@link ExamTarget}
 	 * @param target - the exam target
 	 * @return the list of {@link Exam}s
-	 * @throws OHServiceException
+	 * @throws OHServiceException when fail to fetch by target
 	 */
 	public List<Exam> getByTarget(ExamTarget target) throws OHServiceException {
 		return repository.findByTargetOrderByDescriptionAsc(target);
@@ -99,8 +99,7 @@ public class ExamIoOperations {
 	 * @param target - the exam target
 	 * @param examType - the exam type
 	 * @return the list of {@link Exam}s
-	 * @throws OHServiceException
-	 * 
+	 * @throws OHServiceException when fail to fetch by target and type
 	 */
 	public List<Exam> getByTargetAndType(ExamTarget target, String examType) throws OHServiceException {
 		return repository.findByTargetAndExamtypeDescriptionOrderByDescriptionAsc(target, examType);

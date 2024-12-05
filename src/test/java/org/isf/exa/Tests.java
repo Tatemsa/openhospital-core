@@ -181,7 +181,7 @@ class Tests extends OHCoreTestCase {
 		ExamTarget target = setupTestExamTarget(false);
 		Exam examWithTarget = new Exam();
 		examWithTarget.setTarget(target);
-		List<Exam> examTargetList = examIoOperation.getByTarget(target);
+		List<Exam> examTargetList = examBrowsingManager.getByTarget(target);
 		assertThat(examTargetList).allMatch(exam -> exam.getTarget().equals(target));
 	}
 
@@ -190,7 +190,7 @@ class Tests extends OHCoreTestCase {
 	void testGetByTargetAndType() throws OHServiceException, OHException {
 		ExamTarget target = setupTestExamTarget(false);
 		ExamType examType = new ExamType("ZZ", "TestDescription");
-		List<Exam> exams = examIoOperation.getByTargetAndType(target, examType.getDescription());
+		List<Exam> exams = examBrowsingManager.getByTargetAndType(target, examType.getDescription());
 
 		assertThat(exams).isSortedAccordingTo(Comparator.comparing(Exam::getDescription));
 	}
@@ -201,7 +201,7 @@ class Tests extends OHCoreTestCase {
 		ExamTarget target = setupTestExamTarget(false);
 		String examType = "NonExistentType";
 
-		List<Exam> exams = examIoOperation.getByTargetAndType(target, examType);
+		List<Exam> exams = examBrowsingManager.getByTargetAndType(target, examType);
 
 		assertThat(exams).isEmpty();
 	}
