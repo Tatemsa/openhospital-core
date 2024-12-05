@@ -123,7 +123,6 @@ public class ExamBrowsingManager {
 	 * @return the list of {@link Exam}s. It could be {@code null}
 	 * @throws OHServiceException
 	 */
-
 	public List<Exam> getByTargetAndType(ExamTarget target, String examType) throws OHServiceException {
 		return ioOperations.getByTargetAndType(target, examType);
 	}
