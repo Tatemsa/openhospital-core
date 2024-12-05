@@ -176,6 +176,7 @@ class Tests extends OHCoreTestCase {
 	}
 
 	@Test
+	@DisplayName("Should return exam list matching the given target")
 	void testIoGetExamTargetExam() throws Exception {
 		ExamTarget target = setupTestExamTarget(false);
 		Exam examWithTarget = new Exam();
@@ -185,6 +186,7 @@ class Tests extends OHCoreTestCase {
 	}
 
 	@Test
+	@DisplayName("Should return exam list matching the give type and target sorted by description")
 	void testGetByTargetAndType() throws OHServiceException, OHException {
 		ExamTarget target = setupTestExamTarget(false);
 		ExamType examType = new ExamType("ZZ", "TestDescription");
@@ -193,8 +195,8 @@ class Tests extends OHCoreTestCase {
 		assertThat(exams).isSortedAccordingTo(Comparator.comparing(Exam::getDescription));
 	}
 
-	@DisplayName(" Setup: Create a test ExamTarget and ExamType with no matching exams")
 	@Test
+	@DisplayName(" Should return empty list when getting exam with non-existing exam type")
 	void testGetByTargetAndTypeNoMatchingExams() throws OHServiceException {
 		ExamTarget target = setupTestExamTarget(false);
 		String examType = "NonExistentType";
