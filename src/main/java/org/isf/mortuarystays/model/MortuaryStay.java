@@ -43,6 +43,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class MortuaryStay extends Auditable<String> {
 
 	@Id
+	@Column(name = "MRTST_ID")
+	private int id;
+
+	@NotNull
 	@Column(name = "MRTST_CODE")
 	private String code;
 
@@ -113,7 +117,16 @@ public class MortuaryStay extends Auditable<String> {
 	public void setMinDays(int minDays) {
 		this.minDays = minDays;
 	}
+	@Override
 	public String toString() {
-		return "mortuarystays code=." + getCode() + ". description=." + getDescription() + ". name=." + getName() + '.';
+		return "MortuaryStay{" +
+			"id=" + id +
+			", code='" + code + '\'' +
+			", name='" + name + '\'' +
+			", description='" + description + '\'' +
+			", maxDays=" + maxDays +
+			", minDays=" + minDays +
+			", deleted=" + deleted +
+			'}';
 	}
 }

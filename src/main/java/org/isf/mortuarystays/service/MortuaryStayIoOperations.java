@@ -46,6 +46,14 @@ public class MortuaryStayIoOperations {
 	}
 
 	/**
+	 * Retrieves all stored {@link MortuaryStay}s
+	 * @return
+	 */
+	public List<MortuaryStay> getAll() throws OHServiceException {
+		return repository.findAll();
+	}
+
+	/**
 	 * Updates the specified {@link MortuaryStay}.
 	 *
 	 * @param mortuary - the {@link MortuaryStay} to update.
@@ -81,11 +89,16 @@ public class MortuaryStayIoOperations {
 	 * Checks if the code is already in use.
 	 *
 	 * @param code - the {@link MortuaryStay} code
-	 * @return {@code true} if the code is already in use, {@code false} otherwise
+	 * @return {@code true} if the code is already in use and deleted is false, {@code false} otherwise
 	 * @throws OHServiceException
 	 */
 	public boolean isCodePresent(String code) throws OHServiceException {
-		return repository.existsById(code);
+		boolean existed = false;
+		MortuaryStay mortuaryStay = repository.findByIdWhereNotDeleted(code);
+		if (mortuaryStay != null) {
+			existed = true;
+		}
+		return existed;
 	}
 
 	/**
@@ -97,7 +110,7 @@ public class MortuaryStayIoOperations {
 	 */
 	public MortuaryStay getByCode(String code) throws OHServiceException {
 		if (code != null) {
-			return repository.findById(code).orElse(null);
+			return repository.findByCode(code);
 		}
 		throw new OHServiceException(new OHExceptionMessage(MessageBundle.getMessage("angal.mortuarystays.codemostnotbenull.msg")));
 	}

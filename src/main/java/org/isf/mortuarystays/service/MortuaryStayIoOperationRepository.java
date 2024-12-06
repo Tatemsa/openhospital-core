@@ -26,9 +26,18 @@ import java.util.List;
 import org.isf.mortuarystays.model.MortuaryStay;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MortuaryStayIoOperationRepository extends JpaRepository<MortuaryStay, String> {
+
+	@Query("select m from MortuaryStay m where m.deleted = :deleted ")
 	List<MortuaryStay> findByDeletedOrderByNameAsc(boolean deleted);
+
+	@Query("select m from MortuaryStay m where m.deleted = false and m.code = :code")
+	MortuaryStay findByIdWhereNotDeleted(@Param("code") String code);
+
+	@Query("select m from MortuaryStay m where m.code = :code")
+	MortuaryStay findByCode(@Param("code") String code);
 }
