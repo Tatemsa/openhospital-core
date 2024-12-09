@@ -30,7 +30,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MortuaryStayIoOperationRepository extends JpaRepository<MortuaryStay, String> {
+public interface MortuaryStayIoOperationRepository extends JpaRepository<MortuaryStay, Integer> {
 
 	@Query("select m from MortuaryStay m where m.deleted = :deleted ")
 	List<MortuaryStay> findByDeletedOrderByNameAsc(boolean deleted);

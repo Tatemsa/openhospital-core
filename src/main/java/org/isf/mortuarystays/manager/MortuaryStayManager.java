@@ -59,7 +59,12 @@ public class MortuaryStayManager {
 	 * @throws OHServiceException if an error occurs during the update.
 	 */
 	public MortuaryStay update(MortuaryStay mortuary) throws OHServiceException {
-		return ioOperations.update(mortuary);
+		MortuaryStay mortuaryStay = ioOperations.getByCode(mortuary.getCode());
+		mortuaryStay.setDescription(mortuary.getDescription());
+		mortuaryStay.setMinDays(mortuary.getMinDays());
+		mortuaryStay.setMaxDays(mortuary.getMaxDays());
+		mortuaryStay.setName(mortuary.getName());
+		return ioOperations.update(mortuaryStay);
 	}
 
 	/**
