@@ -79,7 +79,6 @@ public class MortuaryStayManager {
 	 * @throws OHServiceException
 	 */
 	public MortuaryStay delete(MortuaryStay mortuary) throws OHServiceException {
-		mortuary.setDeleted(true);
 		return ioOperations.delete(mortuary);
 	}
 
