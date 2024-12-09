@@ -83,11 +83,8 @@ public class MortuaryStayIoOperations {
 	 */
 	public MortuaryStay delete(MortuaryStay mortuary) throws OHServiceException {
 		MortuaryStay mortuaryStay = repository.findByCode(mortuary.getCode());
-		if (mortuaryStay!=null) {
-			mortuaryStay.setDeleted(true);
-			return repository.save(mortuaryStay);
-		}
-		return null;
+		mortuaryStay.setDeleted(true);
+		return repository.save(mortuaryStay);
 	}
 
 	/**
