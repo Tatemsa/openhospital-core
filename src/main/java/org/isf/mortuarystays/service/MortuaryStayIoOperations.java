@@ -112,7 +112,7 @@ public class MortuaryStayIoOperations {
 	 */
 	public MortuaryStay getByCode(String code) throws OHServiceException {
 		if (code != null) {
-			return repository.findByCode(code);
+			return repository.findByIdWhereNotDeleted(code);
 		}
 		throw new OHServiceException(new OHExceptionMessage(MessageBundle.getMessage("angal.mortuarystays.codemostnotbenull.msg")));
 	}

@@ -141,7 +141,7 @@ public class MortuaryStayManager {
 		if (maxD < 0) {
 			errors.add(new OHExceptionMessage(MessageBundle.getMessage("angal.mortuarystays.insertavalidmaxdnumber.msg")));
 		}
-		if (minD >= maxD) {
+		if (minD > maxD) {
 			errors.add(new OHExceptionMessage(MessageBundle.getMessage("angal.mortuarystays.insertcoherencemaxminvalues.msg")));
 		}
 
