@@ -75,24 +75,22 @@ public class MortuaryIoOperations {
 		mortuaryRepository.delete(mortuary);
 	}
 
-	public List<Mortuary> getMortuariesWhereData(
-		String patientName,
-		String deathReason,
-		String ward,
-		LocalDateTime movFrom,
-		LocalDateTime movTo,
-		Pageable pageable
-	) throws OHServiceException {
-		movFrom = movFrom.withHour(0).withMinute(0);
-		movTo = movTo.withHour(23).withMinute(59);
-
-		return mortuaryRepository.findMortuariesWhereData(
-			patientName,
-			deathReason,
-			ward,
-			TimeTools.truncateToSeconds(movFrom),
-			TimeTools.truncateToSeconds(movTo),
-			pageable
-		);
-	}
+//	public List<Mortuary> getMortuariesWhereData(
+//		String patientName,
+//		String deathReason,
+//		String ward,
+//		LocalDateTime movFrom,
+//		LocalDateTime movTo
+//	) throws OHServiceException {
+//		movFrom = movFrom.withHour(0).withMinute(0);
+//		movTo = movTo.withHour(23).withMinute(59);
+//
+//		return mortuaryRepository.getMortuariesWhereData(
+//			patientName,
+//			deathReason,
+//			ward,
+//			TimeTools.truncateToSeconds(movFrom),
+//			TimeTools.truncateToSeconds(movTo)
+//		);
+//	}
 }

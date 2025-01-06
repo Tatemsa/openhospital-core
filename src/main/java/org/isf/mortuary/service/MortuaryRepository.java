@@ -1,7 +1,5 @@
 package org.isf.mortuary.service;
 
-import java.util.Optional;
-
 import org.isf.mortuary.model.Mortuary;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -32,7 +32,7 @@ public class Mortuary {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MRT_ID")
-	private int id;;
+	private int id;
 
 	@Column(name = "MRT_PLACE")
 	private String place;
